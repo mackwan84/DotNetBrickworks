@@ -1,4 +1,4 @@
-# 使用 MassTransit 的请求-响应消息模式
+# [使用 MassTransit 的请求-响应消息模式](https://www.milanjovanovic.tech/blog/request-response-messaging-pattern-with-masstransit)
 
 构建分布式应用乍一看可能很简单。不过是服务器之间相互通信嘛。对吧？
 

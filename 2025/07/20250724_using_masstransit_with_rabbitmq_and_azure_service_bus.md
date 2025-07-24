@@ -1,4 +1,4 @@
-# MassTransit 入门指南
+# [MassTransit 入门指南](<https://www.milanjovanovic.tech/blog/using-masstransit-with-rabbitmq-and-azure-service-bus>)
 
 MassTransit 是一个用于 .NET 的开源分布式应用程序框架。它在支持的消息传输之上提供了一个消息抽象层。MassTransit 让你专注于增加业务价值，而不是担心消息传递的复杂性。
 
