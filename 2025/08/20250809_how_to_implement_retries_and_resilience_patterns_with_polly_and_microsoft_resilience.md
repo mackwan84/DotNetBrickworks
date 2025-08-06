@@ -2,10 +2,10 @@
 
 现代 .NET 应用程序通常依赖外部服务来获取数据、消息传递等。如果处理不当，单个网络错误可能导致级联故障。
 
-现代 在调用外部 API 时，您可能会遇到以下几个问题：.NET 应用程序通常依赖外部服务来获取数据、消息传递等。如果处理不当，单个网络错误可能导致级联故障。
+在调用外部 API 时， 你可能会遇到以下几个问题：.NET 应用程序通常依赖外部服务来获取数据、消息传递等。如果处理不当，单个网络错误可能导致级联故障。
 
 - 瞬时故障：外部服务可能会在短时间内变慢或无法访问。
-- 部分故障：另一个系统可能处于维护模式，限制了您的访问。
+- 部分故障：另一个系统可能处于维护模式，限制了 你的访问。
 - 网络不稳定：网络连接较慢的用户可能会遇到短时间的中断或超时。
 - 过载服务：另一个服务可能因请求过多而过载，导致响应缓慢。
 
@@ -50,11 +50,11 @@ response.EnsureSuccessStatusCode();
 - Polly
 - Microsoft.Extensions.Resilience
 
-**Polly** 是一个经典的.NET 库，多年来广为人知，它能帮助您以最小的努力实现弹性模式。它允许围绕任何代码创建弹性管道：网络调用、数据库、缓存、发送电子邮件等。
+**Polly** 是一个经典的.NET 库，多年来广为人知，它能帮助 你以最小的努力实现弹性模式。它允许围绕任何代码创建弹性管道：网络调用、数据库、缓存、发送电子邮件等。
 
 **Microsoft.Extensions.Resilience** 构建于 Polly 之上。它提供了与 .NET HttpClientFactory 的无缝集成。
 
-这使您能够将弹性管道应用于外部 HTTP 调用。
+这使 你能够将弹性管道应用于外部 HTTP 调用。
 
 将以下 Nuget 包添加到订单服务：
 
@@ -78,7 +78,7 @@ dotnet add package Microsoft.Extensions.Resilience
 
 **带抖动的指数退避**被认为是最可靠的重试策略。幸运的是，你不需要自己实现它，Polly 已经为此提供了内置的管道。
 
-这是您可以定义重试管道的方法：
+这是 你可以定义重试管道的方法：
 
 ```csharp
 using Polly;
@@ -233,7 +233,7 @@ builder.Services.AddHttpClient("PaymentService", client =>
 
 这就是为什么你需要为你的网络请求实现超时机制。
 
-超时模式确保您的请求以受控方式失败。
+超时模式确保 你的请求以受控方式失败。
 
 **最佳实践**：
 
@@ -304,7 +304,7 @@ var fallbackOptions = new FallbackStrategyOptions<HttpResponseMessage>
 };
 ```
 
-以下是如何结合重试和回退管道，并用组合管道包装 HttpClient 调用的方法：
+以下是如何结合重试和降级管道，并用组合管道包装 HttpClient 调用的方法：
 
 ```csharp
 var pipeline = new ResiliencePipelineBuilder<HttpResponseMessage>()
@@ -367,7 +367,7 @@ builder.Services.AddHttpClient("PaymentService", client =>
 
 使用对冲策略而不是等待，你的系统会向同一服务、另一个服务或副本发送备份请求。这确保了更快的响应和更高的可靠性，代价是额外的资源使用。
 
-当您绝对需要更低的延迟且能够承受额外开销时，请使用对冲策略。
+当 你绝对需要更低的延迟且能够承受额外开销时，请使用对冲策略。
 
 以下是实现对冲管道的方法：
 
@@ -432,7 +432,7 @@ services.AddHttpClient<GitHubService>("PaymentService", client =>
 
 ## 总结
 
-构建有弹性的 .NET 应用程序意味着优雅地处理外部故障。Polly 和 Microsoft.Extensions.Resilience 帮助您实现：
+构建有弹性的 .NET 应用程序意味着优雅地处理外部故障。Polly 和 Microsoft.Extensions.Resilience 帮助 你实现：
 
 - **重试**：给服务第二次响应的机会。
 - **断路器**：停止调用无响应的服务，以防止级联故障。
@@ -440,6 +440,6 @@ services.AddHttpClient<GitHubService>("PaymentService", client =>
 - **降级**：当其他所有方法都失败时，提供一个备用方案或发出警报。
 - **对冲**：在延迟敏感场景中，通过发起多个请求竞赛来提高速度。
 
-通过将这些模式集成到您的 HttpClient 或自定义管道中，您可以构建强大且可靠的.NET 应用程序，使其在出现错误时保持稳定。
+通过将这些模式集成到 你的 HttpClient 或自定义管道中， 你可以构建强大且可靠的.NET 应用程序，使其在出现错误时保持稳定。
 
 今天就到这里。期待与你再次相见。
